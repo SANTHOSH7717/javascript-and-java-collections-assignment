@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Booking Summary</title>
+  <style>
+    #container {
+      border: 2px solid black;
+      margin-top: 50px;
+      height: 300px;
+      width: 520px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+    
+    h2 {
+      background-color: cyan;
+      color: white;
+      padding: 5px;
+    }
+    
+    #maincontent {
+      height: 250px;
+      width: 500px;
+      border: 1px solid #CEE2FA;
+      text-align: left;
+      color: #08438E;
+      font-family: calibri;
+      font-size: 20;
+      padding: 5px;
+    }
+    
+    div#heading {
+      text-decoration: bold;
+      text-align: center;
+      width: 500px;
+      border: 1px solid #CEE2FA;
+      text-align: center;
+      color: #08438E;
+      font-family: calibri;
+      font-size: 20;
+      padding: 5px;
+    }
+    
+    h2 {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="heading"><h2>Booking Summary</h2></div>
+    <div id="maincontent"></div>
+  </div>
+  <script>
+    // Actual cost per ticket
+    const costPerTicket = 9;
+  
+    // Calculate discount based on the number of seats booked
+    const calculateDiscount = (seats) => {
+      if (seats > 2 && seats < 6) {
+        const discounts = [5, 7, 9, 11];
+        const discountPercentage = discounts[seats - 3];
+        return (costPerTicket * discountPercentage) / 100;
+      } else {
+        return 0;
+      }
+    };
+    const seats = 4;
+
+    // Calculate and display the total cost 
+    const calculateCost = (seats) => {
+      const discount = calculateDiscount(seats);
+      const totalCost = costPerTicket * seats - discount;
+      return totalCost.toFixed(2);
+    };
+  
+    //  booking summary
+    const maincontent = document.getElementById("maincontent");
+    maincontent.innerHTML = `
+      <p>Actual cost per ticket: $${costPerTicket}</p>
+      <p>${seats} seats are eligible for festive discount!!</p>
+    `;
+    if (seats > 2 && seats < 6) {
+      const discounts = [5, 7, 9, 11];
+      for (let i = 0; i < seats; i++) {
+        maincontent.innerHTML += `
+          <p>${discounts[i]}% discount! on Ticket ${i + 1}</p>
+        `;
+      }
+    }
+    const totalCost = calculateCost(seats);
+    maincontent.innerHTML += `
+      <p>Amount payable: $${totalCost}</p>
+    `;
+  </script>
+</body>
+</html>

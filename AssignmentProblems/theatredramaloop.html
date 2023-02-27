@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+        div#maincontent {
+            height: 130px;
+            width: 500px;
+            border: 1px solid #CEE2FA;
+            text-align: left;
+            color: #08438E;
+            font-family: calibri;
+            font-size: 20;
+            padding: 5px;
+        }
+
+        div#heading {
+            text-decoration: bold;
+            text-align: center;
+            margin-top: 80px;
+            width: 500px;
+            border: 1px solid #CEE2FA;
+            text-align: center;
+            color: #08438E;
+            background-color: #CEE2FA;
+            font-family: calibri;
+            font-size: 20;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div id="heading"><b>Theater Drama</b></div>
+        <div id="maincontent">
+           <script >
+            document.write("<b> Your Ticket Details</b> <br>");
+
+function calculateTotalCost(seat) {
+
+    let ticketPrice = 9;
+    var discount = 0;
+    var count = 0;
+    var cost = 0;
+    var totalCost = 0;
+    var customer = [0, 0, 0, 0, 0];
+
+    if(seat <=2){
+        totalCost = ticketPrice * seat;
+        for (var i = 0; i < seat; i++) {
+            ++count;
+            document.write("Ticket for Customer " + count + " gets " + customer[i] + "% " + "discount!");
+            document.write(", Cost is: $" + ticketPrice + "<br>");
+        }; document.write("For " + count + " tickets, you need to pay: $" + totalCost);
+        return totalCost;
+    }
+    else if (seat > 2 && seat < 5) {
+        discount = 3;
+        for(var i = 0; i < seat; i++) {
+            ++count;
+            discount += 2;
+            customer[i] = discount;
+            document.write("Ticket for Customer " + count + " gets " + customer[i] + "% "   + "discount!");
+            cost = (ticketPrice - (ticketPrice * discount) / 100);
+            document.write(", Cost is: $" + cost + "<br>");
+            totalCost += cost;
+        };
+        document.write("For " + count + " tickets, you need to pay: <b>$" + totalCost + "</b> instead of $"+ ticketPrice*count );
+        
+    } else if (seat >= 5) {
+        document.write("Booking not allowed for 5 or more seats.");
+    }
+
+    return 0;
+}
+let inp = prompt('Enter number of tickets');
+calculateTotalCost(inp)
+                //Write the code to display the movie details
+
+            </script>
+        </div>
+    </center>
+</body>
+
+</html>
